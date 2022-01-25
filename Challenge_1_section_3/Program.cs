@@ -16,38 +16,11 @@ namespace Challenge_1_section_3
     {
         static void Main(string[] args)
         {
-            string friend = "Stefan";
-            string friend2 = "Viggo";
-            string friend3 = "Rebecca";
-            Console.WriteLine("Without returning anything - Void");
-            GreetFriendVoid(friend);
-            GreetFriendVoid(friend2);
-            GreetFriendVoid(friend3);
 
-            Console.WriteLine("\nWith Return statement");
-            Console.WriteLine(GreetFriend(friend));
-            Console.WriteLine(GreetFriend(friend2));
-            Console.WriteLine(GreetFriend(friend3));
-           
-            Console.WriteLine("\nWith multiple paramaters");
-            GreetFriendManyThreeNames(friend, friend2, friend3);
+            string input = Console.ReadLine();
+            Console.WriteLine(input);
 
             Console.Read();
-        }
-        public static void GreetFriendVoid(string name)
-        {
-            Console.WriteLine($"Hi {name}, my friend!");
-        }
-        public static string GreetFriend(string name)
-        {
-            return $"Hi {name}, my friend!";
-        }
-
-        public static void GreetFriendManyThreeNames(string name1, string name2, string name3)
-        {
-            Console.WriteLine($"Hi {name1}, my friend");
-            Console.WriteLine($"Hi {name2}, my friend");
-            Console.WriteLine($"Hi {name3}, my friend");
         }
     }
 }
