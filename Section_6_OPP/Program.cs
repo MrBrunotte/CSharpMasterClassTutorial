@@ -6,7 +6,13 @@ namespace Section_6_OPP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Box box = new Box();
+            box.SetLength(5);
+            box.height = 4;
+            box.width = 5;
+            box.DispalyInfo();
+
+            Console.Read();
         }
     }
 }
