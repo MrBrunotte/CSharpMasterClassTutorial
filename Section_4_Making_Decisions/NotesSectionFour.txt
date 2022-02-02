@@ -39,6 +39,7 @@ static void Main(string[] args)
             // TryParse
             string numberAsString = "128";
             int parsedValue;
+
             // The returned boolean is true when parsing was successful
             bool success = int.TryParse(numberAsString, out parsedValue);
 
