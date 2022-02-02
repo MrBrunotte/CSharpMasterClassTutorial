@@ -1,6 +1,6 @@
-﻿----- LOOPS -----
+﻿# LOOPS
 
-61 - Basics of loops
+## 61 - Basics of loops
 
 // Loop types
             /*
@@ -38,7 +38,7 @@
                 // execute code more in later chapters
             }
 
-62 - for loops
+## 62 - for loops
 
 static void Main(string[] args)
         {
@@ -63,7 +63,7 @@ static void Main(string[] args)
             Console.ReadLine();
         }
 
-63 Do while loop
+## 63 Do while loop
 
 static void Main(string[] args)
         {
@@ -98,7 +98,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-64 - While loop
+## 64 - While loop
 static void Main(string[] args)
         {
             // While loop
@@ -116,7 +116,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-65 - Break and continue
+## 65 - Break and continue
 
 static void Main(string[] args)
         {
@@ -143,7 +143,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-66 - Challenge - Loop 1 Average
+## 66 - Challenge - Loop 1 Average
 
 class Program
     {

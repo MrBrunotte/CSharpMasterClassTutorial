@@ -1,6 +1,6 @@
-﻿------ Making Decisions in C# || If, switch etc... ------
+﻿# Making Decisions in C# || If, switch etc...
 
-47 - Introduktion to Decision Making in C#
+## 47 - Introduktion to Decision Making in C#
 
 static void Main(string[] args)
         {
@@ -22,7 +22,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-48 - TryParse()
+## 48 - TryParse()
 
 You can parse numeric data types as int, float, double etc
 
@@ -62,7 +62,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-49 - IF and Else If + TryParse
+## 49 - IF and Else If + TryParse
 
 static void Main(string[] args)
         {
@@ -99,7 +99,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-51 - Challenge
+## 51 - Challenge
 
 /* Create a user Login System, where the user can first register and then Login in. 
          * The Program should check if the user has entered the correct username and password, 
@@ -185,7 +185,7 @@ static void Main(string[] args)
             }
         }
 
-53 - Switch statement
+## 53 - Switch statement
 static void Main(string[] args)
         {
             Console.WriteLine("\n---- switch with int ----");
@@ -243,7 +243,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-54 - Challenge If statements 2
+## 54 - Challenge If statements 2
 
 // global variables
         static int highScore = 55;
@@ -284,7 +284,7 @@ static void Main(string[] args)
             Console.WriteLine($"\nNew highscore: {highScore} held by: {highScoreplayer}");
         }
 
-56 - Enhanced if statements - Ternary Operator
+## 56 - Enhanced if statements - Ternary Operator
 
 static void Main(string[] args)
         {
@@ -326,7 +326,7 @@ static void Main(string[] args)
             Console.Read();
         }
 
-57, 58 - Ternary Challenge
+## 57, 58 - Ternary Challenge
 
 class Program
     {
@@ -381,3 +381,4 @@ class Program
             Console.Read();
         }
     }
+
