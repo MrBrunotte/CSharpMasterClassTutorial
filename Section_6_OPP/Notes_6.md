@@ -260,3 +260,183 @@ The protected internal access modifier is a combination of protected and interna
 The private protected access modifier is a combination of private and protected keywords. We can access members inside the containing class or in a class that derives from a containing class, but only in the same assembly(project). Therefore, if we try to access it from another assembly, we will get an error
 
 ## 75, 75 - Properties
+##### Summary of properties
+1. We created some private member variables that are only accesible to the Box class
+2. Other classes can only access our private member variables through our properties setter and getter, (we dont need the private member variables in this example).
+3. We created a constructor with three parameters.
+
+#### Box.cs
+    class Box
+    {
+        // member variables
+        private int length;
+        private int height;
+        private int width;
+        private int volume;
+        // properties
+        public int Width { get; set; }
+        //public int Volume { get; set; }
+
+        // Read only property CHALLENGE
+        public int FrontSurface 
+        { 
+            get
+            {
+                return height * length;
+            } 
+        }
+        public int Volume
+        {
+            get
+            {
+                return length * height * Width;
+            }
+        }
+        public int Length 
+        { 
+            get
+            {
+                return length;
+            }
+            set
+            {
+                length = value;
+            }
+        }
+        public int Height 
+        {
+            get
+            {
+                return height;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    // if value < 0 the -value multiplies it with -1 to make it positive.
+                    height = -value;
+                }
+                else
+                {
+                height = value;   
+                }
+            }
+        }
+        // constructor
+        public Box(int length, int height, int width)
+        {
+            this.length = length;
+            this.height = height;
+            Width = width;
+        }
+
+        //public void SetLength(int length)
+        //{
+        //    if (length < 0)
+        //    {
+        //        throw new Exception("Length should be higher than 0");
+        //    }
+        //    Length = length;
+        //}
+        public void DispalyInfo()
+        {
+            Console.WriteLine($"Length: {length}, Height {height}, Width: {Width}, Volume: {volume = Length * height * Width}");
+        }
+        
+    }
+
+#### Program.cs
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Box box = new Box(2,2,2);
+            //box.Length = 45;
+            //box.Height = -55;
+            //box.Width = 5;
+            Console.WriteLine($"Box Width is: {box.Width}");
+            //box.Width = 10;
+            Console.WriteLine($"Box Width is: {box.Width}");
+            box.DispalyInfo();
+
+            Console.WriteLine("----- Challenge ------");
+            Console.WriteLine($"Frontserface (height: {box.Height} * width: {box.Width}) = {box.FrontSurface}");
+
+            Console.Read();
+        }
+    }
+
+#### Challenge - Properties See above
+Create a read only property "FrontSurface" which calculate the front
+surface based on height and length
+
+###### Members
+ - Fields, have accessors, private is default
+ - Property, exposes the private field and they start with a Capital letter
+ - Method, can be called from other classes if public
+   - Methods that are private can only be accessed from the same class
+ - Constructors, initiates the class object with or with out variables
+ - Destructors, this is a finalizer and it cleans up the code and "destructs" the object when it is out of scope (not used anymore). Only use a destructor if it fills a function, we dont need to use memory for this if we dont need it. It gets out of scope when it goes outside the Main()
+
+## 78 - Members
+
+in the members class we have all the relevant member types in OOP
+
+     // member - private field
+        private string memberName;
+        private string jobTitle;
+        private int salary;
+
+    // member - public field
+        public int age;
+
+    // member - property - exposes jobTitle safely - properties start with a capital letter
+        public string JobTitle
+        {
+            get
+            {
+                return jobTitle;
+            }
+            set
+            {
+                jobTitle = value;
+            }
+        }
+
+        // public member Method - can be called from other classes
+        public void Introducing(bool isFriend)
+        {
+            if (isFriend)
+            {
+                SharingPrivateInfo();
+            }
+            else
+            {
+                Console.WriteLine("Hi, my name is {0}, and my job title is {1}. I'm {2} years old", memberName, jobTitle, age);
+            }
+
+        }
+
+        private void SharingPrivateInfo()
+        {
+            Console.WriteLine("My salary is {0}", salary);
+        }
+
+        // member constructor
+        public Members()
+        {
+            age = 30;
+            memberName = "Lucy";
+            salary = 60000;
+            jobTitle = "Developer";
+            Console.WriteLine("Object created");
+        }
+
+        // member - finalizer - destructor
+        ~Members()
+        {
+            // cleanup statements
+            Console.WriteLine("Deconstruction of Members object");
+            Debug.Write("Destruction of Members object");
+        }

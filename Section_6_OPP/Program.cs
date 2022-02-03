@@ -6,13 +6,9 @@ namespace Section_6_OPP
     {
         static void Main(string[] args)
         {
-            Box box = new Box();
-            box.SetLength(5);
-            box.height = 4;
-            box.width = 5;
-            box.DispalyInfo();
-
-            Console.Read();
+            Members member1 = new Members();
+            member1.Introducing(true);
+            member1.Introducing(false);
         }
     }
 }
