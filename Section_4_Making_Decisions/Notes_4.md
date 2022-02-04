@@ -186,66 +186,66 @@ static void Main(string[] args)
         }
 
 ## 53 - Switch statement
-static void Main(string[] args)
-        {
-            Console.WriteLine("\n---- switch with int ----");
-            Console.Write("How old are you? ");
-            int age = int.Parse(Console.ReadLine());
-
-            switch (age)
+    static void Main(string[] args)
             {
-                case 15:
-                    Console.WriteLine("To young to get in to the club!");
-                    break;
-                case 21:
-                    Console.WriteLine("You are old enough to get in to the club!");
-                    break;
-                case 49:
+                Console.WriteLine("\n---- switch with int ----");
+                Console.Write("How old are you? ");
+                int age = int.Parse(Console.ReadLine());
+
+                switch (age)
+                {
+                    case 15:
+                        Console.WriteLine("To young to get in to the club!");
+                        break;
+                    case 21:
+                        Console.WriteLine("You are old enough to get in to the club!");
+                        break;
+                    case 49:
+                        Console.WriteLine("You are the perfect age, the ladies will love you!");
+                        break;
+                }
+
+                Console.WriteLine("\n---- if-statement ----");
+                Console.Write("Enter your age: ");
+                int age1 = int.Parse(Console.ReadLine());
+                if (age1 <= 15)
+                {
+                        Console.WriteLine("To young to get in to the club!");
+                }
+                else if (age1 >= 21 && age1 <=48)
+                {
+                        Console.WriteLine("You are old enough to get in to the club!");
+                }
+                else if (age1 == 49)
+                {
                     Console.WriteLine("You are the perfect age, the ladies will love you!");
-                    break;
-            }
-
-            Console.WriteLine("\n---- if-statement ----");
-            Console.Write("Enter your age: ");
-            int age1 = int.Parse(Console.ReadLine());
-            if (age1 <= 15)
-            {
-                    Console.WriteLine("To young to get in to the club!");
-            }
-            else if (age1 >= 21 && age1 <=48)
-            {
-                    Console.WriteLine("You are old enough to get in to the club!");
-            }
-            else if (age1 == 49)
-            {
-                Console.WriteLine("You are the perfect age, the ladies will love you!");
-            }
-            else
-            {
-                Console.WriteLine("You are so old you can do anyting you want!!");
-            }
-            Console.WriteLine("\n---- switch with strings ----");
+                }
+                else
+                {
+                    Console.WriteLine("You are so old you can do anyting you want!!");
+                }
+                Console.WriteLine("\n---- switch with strings ----");
             
-            Console.Write("Enter your username: ");
-            string username = Console.ReadLine();
-            switch (username)
-            {
-                case "Stefan":
-                    Console.WriteLine("Username is Stefan");
-                    break;
-                case "root":
-                    Console.WriteLine("Username is root");
-                    break;
-                default:
-                    Console.WriteLine("Username is Unknown");
-                    break;
+                Console.Write("Enter your username: ");
+                string username = Console.ReadLine();
+                switch (username)
+                {
+                    case "Stefan":
+                        Console.WriteLine("Username is Stefan");
+                        break;
+                    case "root":
+                        Console.WriteLine("Username is root");
+                        break;
+                    default:
+                        Console.WriteLine("Username is Unknown");
+                        break;
+                }
+                Console.Read();
             }
-            Console.Read();
-        }
 
 ## 54 - Challenge If statements 2
 
-// global variables
+    // global variables
         static int highScore = 55;
         static string highScoreplayer = "Viggo";
 
@@ -286,7 +286,7 @@ static void Main(string[] args)
 
 ## 56 - Enhanced if statements - Ternary Operator
 
-static void Main(string[] args)
+    static void Main(string[] args)
         {
             // Ternary operator - one if statement in one row
             /* condition ? first_expression : second_expression
@@ -328,57 +328,57 @@ static void Main(string[] args)
 
 ## 57, 58 - Ternary Challenge
 
-class Program
-    {
-        /* 
-         * We have studied ternary operators and their usage so here is a small challenge for you. 
-         * Let's create a smallapplication that takes a temperature value as input and checks 
-         * if the input is an integer or not.
-         * If the input value is not an integer value, it should print to the console "Not a valid Temperature".
-           And if the input value is the valid integer then it should work as mentioned below.
-           If input temperature value is <=15 it should write "it is too cold here" to the console.
-           If input temperature value is >= 16 and is <=28 it should write "it is ok" to the console.
-           If the input temperature value is > 28 it should write "it is hot here" to the console.
-        */
-        static void Main(string[] args)
+    class Program
         {
-            int inputTemperature = 0;
-            string temperatureMessage = string.Empty;
-            string inputValue = string.Empty;
-
-            // Input from user stored in a string variable
-            Console.Write("Whats the current temp?: ");
-            inputValue = Console.ReadLine();
-
-            // Validate the input with TryParse()
-            bool validInteger = int.TryParse(inputValue, out inputTemperature);
-
-            if (validInteger)
+            /* 
+             * We have studied ternary operators and their usage so here is a small challenge for you. 
+             * Let's create a smallapplication that takes a temperature value as input and checks 
+             * if the input is an integer or not.
+             * If the input value is not an integer value, it should print to the console "Not a valid Temperature".
+               And if the input value is the valid integer then it should work as mentioned below.
+               If input temperature value is <=15 it should write "it is too cold here" to the console.
+               If input temperature value is >= 16 and is <=28 it should write "it is ok" to the console.
+               If the input temperature value is > 28 it should write "it is hot here" to the console.
+            */
+            static void Main(string[] args)
             {
-                temperatureMessage = inputTemperature <= 15 ? "It is cold here!" : (inputTemperature >= 16 && inputTemperature <= 28) ? "It is varm here" : inputTemperature > 28 ? "It is hot here" : "";
-                
-                Console.WriteLine(temperatureMessage);
+                int inputTemperature = 0;
+                string temperatureMessage = string.Empty;
+                string inputValue = string.Empty;
 
-                //temperatureMessage = inputTemperature <= 15 ?
-                //    //True case
-                //    "It is cold here!" :
-                //    // false case and nested ternary
-                //    // condition
-                //    (inputTemperature >= 16 && inputTemperature <= 28) ?
-                //    // true
-                //    "It is varm here" :
-                //    // false
-                //    inputTemperature > 28 ? 
-                //    // true
-                //    "It is hot here" : 
-                //    // false
+                // Input from user stored in a string variable
+                Console.Write("Whats the current temp?: ");
+                inputValue = Console.ReadLine();
+
+                // Validate the input with TryParse()
+                bool validInteger = int.TryParse(inputValue, out inputTemperature);
+
+                if (validInteger)
+                {
+                    temperatureMessage = inputTemperature <= 15 ? "It is cold here!" : (inputTemperature >= 16 && inputTemperature <= 28) ? "It is varm here" : inputTemperature > 28 ? "It is hot here" : "";
+                
+                    Console.WriteLine(temperatureMessage);
+
+                    //temperatureMessage = inputTemperature <= 15 ?
+                    //    //True case
+                    //    "It is cold here!" :
+                    //    // false case and nested ternary
+                    //    // condition
+                    //    (inputTemperature >= 16 && inputTemperature <= 28) ?
+                    //    // true
+                    //    "It is varm here" :
+                    //    // false
+                    //    inputTemperature > 28 ? 
+                    //    // true
+                    //    "It is hot here" : 
+                    //    // false
                      
-                //Console.WriteLine(temperatureMessage);
-            }
-            else
-                Console.WriteLine("Not a valid temperature!");
+                    //Console.WriteLine(temperatureMessage);
+                }
+                else
+                    Console.WriteLine("Not a valid temperature!");
  
-            Console.Read();
+                Console.Read();
+            }
         }
-    }
 
