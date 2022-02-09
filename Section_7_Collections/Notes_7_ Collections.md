@@ -196,3 +196,107 @@ It is an invalid: Integer"
         }
 
 ## 87 - Nested for loops and 2d arrays
+
+    static void Main(string[] args)
+        {
+            // cannot change any values in the foreach loop!
+            foreach (int num in matrix)
+            {
+                Console.Write(num + " ");
+            }
+
+            Console.WriteLine("\nThis is our 2D matrix array printed using a nested for loop");
+            // Nested for loop - We can change values in the loop with for loops!
+            // Outer for loop
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                // Inner for loop
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[2, 1] = 8888888;
+                    Console.Write(matrix[i,j] + " ");
+                }
+            }
+
+
+            Console.Read();
+        }
+
+        // static collection since we are using it in the Main()
+        static int[,] matrix =
+        {
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+        };
+    }
+
+## 88, 89 - Nested for loops part two
+
+    // static collection since we are using it in the Main()
+        /*
+         * position index nr
+         
+            {00,01,02},     
+            {10,11,12},
+            {20,21,22}
+         
+         */
+        static int[,] matrix =
+        {
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+        };
+        static void Main(string[] args)
+        {
+            // cannot change any values in the foreach loop!
+            Console.WriteLine("Print the odd numbers in the matrix");
+            foreach (int num in matrix)
+            {
+                Console.Write(num + " ");
+            }
+
+            // Nested for loop - We can change values in the loop with for loops!
+            // Outer for loop
+            Console.WriteLine("\nPrints the diagonal numbers: 1 5 9");
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                // Inner for loop
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (i == j)
+                    {
+                    Console.Write(matrix[i,j]);
+                    }
+                    else
+                        Console.Write("-");
+                }
+                Console.WriteLine("");
+            }
+
+            Console.WriteLine("\nPrints the diagonal numbers: 1 5 9 with only one for loop!");
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                // prints the numbers 1=1, 5=5, 9=9
+                Console.Write  (matrix[i,i] + " ");
+            }
+
+            Console.WriteLine("\nPrints the diagonal numbers: 3 5 7 nested for loop");
+            // This only works if it a matrix 2x2, 3x3, 4x4 if 2x3, 4x5 etc
+            for (int i = 0, j = 2; i < matrix.GetLength(0); i++, j--)
+            {
+                Console.Write(matrix[i,j] + " ");
+            }
+
+
+            Console.Read();
+        }
+
+## 90 - TicTacToe challenge
+
+#### What do I need?
+
+1. playing field the matrix
+2. while loop to keep the game running
+3. 

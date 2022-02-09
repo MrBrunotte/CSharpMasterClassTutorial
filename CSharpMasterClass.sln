@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Section_5_ch_1_Loops_Averag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Section_6_OPP", "Section_6_OPP\Section_6_OPP.csproj", "{FCCF926C-13A9-47AC-A80D-69C4E55A76DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section_7_Collections", "Section_7_Collections\Section_7_Collections.csproj", "{723488CC-61E4-4085-A195-CA099679CD33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Section_7_Collections", "Section_7_Collections\Section_7_Collections.csproj", "{723488CC-61E4-4085-A195-CA099679CD33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section_7_ch_1", "Section_7_ch_1\Section_7_ch_1.csproj", "{229E0038-07AC-4DCB-A648-9F4EF4BA4020}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Section_7_ch_1", "Section_7_ch_1\Section_7_ch_1.csproj", "{229E0038-07AC-4DCB-A648-9F4EF4BA4020}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section_7_ch__2_TicTacToe", "Section_7_ch__2_TicTacToe\Section_7_ch__2_TicTacToe.csproj", "{D3308373-1ADB-49A4-83BF-D95E23704F41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{229E0038-07AC-4DCB-A648-9F4EF4BA4020}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{229E0038-07AC-4DCB-A648-9F4EF4BA4020}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{229E0038-07AC-4DCB-A648-9F4EF4BA4020}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3308373-1ADB-49A4-83BF-D95E23704F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3308373-1ADB-49A4-83BF-D95E23704F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3308373-1ADB-49A4-83BF-D95E23704F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3308373-1ADB-49A4-83BF-D95E23704F41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
