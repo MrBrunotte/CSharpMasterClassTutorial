@@ -1,66 +1,96 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Section_7_Collections
 {
     class Program
     {
-        // Key - Value pair - Hashtables can have different values
-        // Auto - car
         static void Main(string[] args)
         {
-            // create a Hashtabel 
-            Hashtable studentsTable = new Hashtable();
+            // define a queue
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
 
-            Student stud1 = new Student(1, "Maria", 98);
-            Student stud2 = new Student(2, "Jason", 76);
-            Student stud3 = new Student(3, "Clara", 43);
-            Student stud4 = new Student(4, "Steve", 55);
-            Student stud5 = new Student(5, "Peter", 99);
+            // printing the element at the front of the queue, the first value will be shown (1)
+            queue.Enqueue(5);
+            queue.Enqueue(7);
+            queue.Enqueue(6);
+            queue.Enqueue(99);
+            Console.WriteLine($"The value at the front of the queue is: {queue.Peek()}");
+            queue.Enqueue(2);
+            Console.WriteLine($"First value in the queue is: {queue.Peek()}");
+            queue.Enqueue(3);
+            // removes number 1
+            int queueItem = queue.Dequeue();
+            Console.WriteLine($"New first item now: {queue.Peek()}");
+            Console.WriteLine($"\nFirst value in the queue is: {queue.Peek()}");
 
-            // store data in the Hashtable
-            studentsTable.Add(stud1.Id, stud1);
-            studentsTable.Add(stud2.Id, stud2);
-            studentsTable.Add(stud3.Id, stud3);
-            studentsTable.Add(stud4.Id, stud4);
-            studentsTable.Add(stud5.Id, stud5);
-
-            //retrieve data from the Hashtable with known ID
-            Student StoredStudent1 = (Student)studentsTable[stud1.Id];
-
-            // Retrieves all valus from Hashtable
-            foreach (DictionaryEntry student in studentsTable)
+            while (queue.Count > 0)
             {
-                Student temp = (Student)student.Value;
-                Console.WriteLine($"Student ID: {temp.Id}, " +
-                                  $"\nName: {temp.Name}, \nGPA: {temp.GPA}");
+                Console.WriteLine($"The front value {queue.Dequeue()} was remove from the queue.");
+                Console.WriteLine($"Current queue count is: {queue.Count}");
             }
-            Console.WriteLine("--------- Simplify the foreach loop ----------");
-            foreach (Student value in studentsTable.Values)
+
+            Console.WriteLine("\n#### EXAMPLE QUEUE ####");
+            Queue<Order> ordersQueue = new Queue<Order>();
+
+            foreach (Order order in RecieveOrdersFromBranch1())
             {
-                Console.WriteLine($"Student ID: {value.Id}, " +
-                                  $"\nName: {value.Name}, " +
-                                  $"\nGPA: {value.GPA}");
+                ordersQueue.Enqueue(order);
             }
-            Console.WriteLine("----------------------------------------------");
-            Console.WriteLine($"Student ID: {StoredStudent1.Id}, \nName: {StoredStudent1.Name}, \nGPA: {StoredStudent1.GPA}");
+            foreach (Order order in RecieveOrdersFromBranch2())
+            {
+                ordersQueue.Enqueue(order);
+            }
+
+            // as long as the order at the front of the que is not empty
+            while (ordersQueue.Count>0)
+            {
+            // store it in a variable called currentOrder
+            Order currentOrder = ordersQueue.Dequeue();
+            //Processor the order
+            currentOrder.processOrder();
+            }
 
             Console.Read();
         }
-
-    }
-    class Student
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public float GPA { get; set; }
-
-        public Student(int id, string name, float gpa)
+        static Order[] RecieveOrdersFromBranch1()
         {
-            Id = id;
-            Name = name;
-            GPA = gpa;
+            // creating new orders
+            Order[] orders = new Order[]
+            {
+                new Order(1,5),
+                new Order(2,4),
+                new Order(6,1)
+            };
+            return orders;
+        }
+        static Order[] RecieveOrdersFromBranch2()
+        {
+            // creating new orders
+            Order[] orders = new Order[]
+            {
+                new Order(3,5),
+                new Order(4,4),
+                new Order(5,10)
+            };
+            return orders;
+        }
+    }
+    class Order
+    {
+        public int ID { get; set; }
+        public int OrderQty { get; set; }
+        public Order(int id, int orderQty)
+        {
+            ID = id;
+            OrderQty = orderQty;
+        }
+        public void processOrder()
+        {
+            Console.WriteLine($"Order: {ID} processed!");
         }
     }
 }

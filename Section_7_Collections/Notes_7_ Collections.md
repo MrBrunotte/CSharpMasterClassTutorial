@@ -694,4 +694,428 @@ Write a method that returns a list of even integer numbers between 100 and 170 (
         }
     }
 
-##
+## 102 - dictionaries
+Dictionaries use Key-Value pair. 
+1. In this video we create a class of Employees with several properties. The Salary is a readonly property and it calcules the salary for each role based on the Rate.
+2. We create a list of Employees from the Employe class (Role, Name, Age, Rate)
+3. Create the emplyeesDirectory and add the list to the directory
+4. ContainsKey() method
+5. TryGetValue() method
+6. ElementAt() method (using Linq)
+
+
+
+        class Program
+        {
+            // key - value
+            // Auto - car
+            static void Main(string[] args)
+        {
+            // List of employees
+            Employee[] employees =
+            {
+                new Employee("CEO", "Stefan", 95, 200),
+                new Employee("Manager", "Viggo", 35, 25),
+                new Employee("HR", "Calle", 32, 21),
+                new Employee("Secretary", "Märta", 28, 18),
+                new Employee("Lead Developer", "Peter", 55, 35),
+                new Employee("Intern", "Dino", 22, 8),
+            };
+
+            // create Dictionary employeesDirectory
+            Dictionary<string, Employee> employeesDirectory = new Dictionary<string, Employee>();
+
+            // Add each key (role) and valye (Employee list object) into the Dictionary employeesDirectory
+            foreach (Employee emp in employees)
+            {
+                employeesDirectory.Add(emp.Role, emp);
+            }
+            Console.WriteLine("Roles:\nCEO\nManager\nHR\nSecretary\nLead Developer\nIntern\n");
+
+            // Example with ContainsKey()
+            Console.Write("What employee role do you want info about?: ");
+            string key = Console.ReadLine();
+            Console.WriteLine("\n----- ContainsKey(key) -----\n");
+            if (employeesDirectory.ContainsKey(key))
+            {
+            // fetch data from the dictionary
+            Employee empl = employeesDirectory[key];
+            Console.WriteLine($"Employee name: {empl.Name}, Role: {empl.Role}, Salary: {empl.Salary}");
+            }
+            else
+            {
+                Console.WriteLine("This key does not exist");
+            }
+
+
+            // Example with TryGetValue()
+            Employee result = null;
+
+            Console.Write("\nWhat employee role do you want info about?: ");
+            string keyValue = Console.ReadLine();
+
+            Console.WriteLine("\n----- TryGetValue() -----\n");
+            if (employeesDirectory.TryGetValue(keyValue, out result))
+            {
+                Console.WriteLine($"Value for {keyValue} retrieved");
+                Console.WriteLine($"Employee name: {result.Name}");
+                Console.WriteLine($"Employee Role: {result.Role}");
+                Console.WriteLine($"Employee Age: {result.Age}");
+                Console.WriteLine($"Employee Salary: {result.Salary}");
+            }
+            else
+            {
+                Console.WriteLine("The key does not exist!");
+            }
+
+            Console.ReadKey();
+
+            Console.WriteLine("\n----- ElementAt(i) -----\n");
+            for (int i = 0; i < employeesDirectory.Count; i++)
+            {
+                //Using ElementAt(i) to return the key-value pair stored at index i
+                KeyValuePair<string, Employee> keyValuePair = employeesDirectory.ElementAt(i);
+                //print the key
+                Console.WriteLine($"Key: {keyValuePair.Key}, at index postion {i}");
+                // storing the value in an employee object
+                Employee employeeValues = keyValuePair.Value;
+                // printing the properties of the employee object
+                Console.WriteLine($"Employee Name: {employeeValues.Name}, Employee Role: {employeeValues.Role}, Employee Age: {employeeValues.Age}, Employee Salary: {employeeValues.Salary}\n");
+            }
+
+            Console.Read();
+        }
+        }
+        class Employee
+        {
+            public string Role { get; set; }
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public float Rate { get; set; }
+            public float Salary { get { return Rate * 8 * 5 * 4 * 12; } }
+
+            public Employee(string role, string name, int age, float rate)
+            {
+                Role = role;
+                Name = name;
+                Age = age;
+                Rate = rate;
+            }
+        }
+
+## 103 - Editing and removing Entries in a Dictionary
+
+        class Program
+    {
+        // key - value
+        // Auto - car
+        static void Main(string[] args)
+        {
+            // List of employees
+            Employee[] employees =
+            {
+                new Employee("CEO", "Stefan", 95, 200),
+                new Employee("Manager", "Viggo", 35, 25),
+                new Employee("HR", "Calle", 32, 21),
+                new Employee("Secretary", "Märta", 28, 18),
+                new Employee("Lead Developer", "Peter", 55, 35),
+                new Employee("Intern", "Dino", 22, 8),
+            };
+
+            // create Dictionary employeesDirectory
+            Dictionary<string, Employee> employeesDirectory = new Dictionary<string, Employee>();
+
+            // Add each key (role) and valye (Employee list object) into the Dictionary employeesDirectory
+            foreach (Employee emp in employees)
+            {
+                employeesDirectory.Add(emp.Role, emp);
+            }
+
+            Console.WriteLine("\n----- Update specific key (HR) -----");
+            Console.WriteLine($"Old value at HR: {employeesDirectory.ElementAt(2).Value.Name}");
+            // Update specific Key
+            string keyToUpdate = "HR";
+            if (employeesDirectory.ContainsKey(keyToUpdate))
+            {
+                    employeesDirectory[keyToUpdate] = new Employee("HR", "Elena", 26, 18);
+                    Console.WriteLine($"New value at HR: {employeesDirectory.ElementAt(2).Value.Name}");
+            }
+            else
+            {
+                Console.WriteLine($"There is no such key ({keyToUpdate}) in the dictionary");
+            }
+
+            //Remove 
+            Console.WriteLine("\n----- Remove specific key -----");
+            Console.WriteLine($"Number of elements in directory before: {employeesDirectory.Count()}");
+            Console.WriteLine("Dictionary before");
+            for (int i = 0; i < employeesDirectory.Count; i++)
+            {
+                //Using ElementAt(i) to return the key-value pair stored at index i
+                KeyValuePair<string, Employee> keyValuePair = employeesDirectory.ElementAt(i);
+                // storing the value in an employee object
+                Employee employeeValues = keyValuePair.Value;
+                // printing the properties of the employee object
+                Console.WriteLine($"Employee Name: {employeeValues.Name}, Employee Role: {employeeValues.Role}, Employee Age: {employeeValues.Age}, Employee Salary: {employeeValues.Salary}");
+            }
+            
+           // Console.WriteLine($"Dictionary with role Intern: {employeesDirectory}.");
+            // Remove specific Key
+            string keyToRemove = "Intern";
+            if (employeesDirectory.Remove(keyToRemove))
+            {
+                Console.WriteLine($"\nKey that was removed: {keyToRemove}\n");
+                Console.WriteLine($"New index value: {employeesDirectory.Count()}");
+            }
+            else
+            {
+                Console.WriteLine($"\nThere is no such key to remove ({keyToRemove}) in the dictionary\n");
+            }
+            // prints the dictionary
+            for (int i = 0; i < employeesDirectory.Count; i++)
+            {
+                //Using ElementAt(i) to return the key-value pair stored at index i
+                KeyValuePair<string, Employee> keyValuePair = employeesDirectory.ElementAt(i);
+                // storing the value in an employee object
+                Employee employeeValues = keyValuePair.Value;
+                // printing the properties of the employee object
+                Console.WriteLine($"Employee Name: {employeeValues.Name}, Employee Role: {employeeValues.Role}, Employee Age: {employeeValues.Age}, Employee Salary: {employeeValues.Salary}");
+            }
+            Console.Read();
+        }
+    }
+    class Employee
+    {
+        public string Role { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public float Rate { get; set; }
+        public float Salary { get { return Rate * 8 * 5 * 4 * 12; } }
+
+        public Employee(string role, string name, int age, float rate)
+        {
+            Role = role;
+            Name = name;
+            Age = age;
+            Rate = rate;
+        }
+    }
+
+## 104 Stacks and Queues
+
+### The Stack - LIFO
+
+Stores the data in the form of a stack
+
+- Data can be added/removed from top
+- Can't access the elements in the middle
+- LIFO - Last In, First Out 
+
+#### Stacks in programming
+
+- Reversing data (from 1-9 to 9-1)
+- Web browser back button
+- Undo/redo buttons
+
+#### Stack operations
+
+- push - Push(object obj) - Add data to the stack.
+- Pop - Object Pop() - Remove data from the top of the stack
+- Peek - Peek() - Reurns the data object from the top of the stack without removing it.
+
+### Queues - FIFO
+
+- Data can be added from the rear (back) and removed from the front (like airport queues)
+- Cant access the elements in the middle
+- FIFO - First In, First Out
+
+#### Queues in programming
+
+- OS IO requests, mouse movements
+- Managing web requests in a server (handling congestions)
+- Qeuing input in video games
+
+##### Queues operations
+
+- Enqueue(Object obj) - From the rear (back of the queue)
+- Object Dequeue() - Remove data from the front
+- Object Peek() - Returning the object from the front of the queue without removing it.
+
+## 105 - Stacks in C#
+From the System.Collections.Generic namespace so the stack can only be of one type (Generic). You cannot pop and item from and empty stack!
+
+    static void Main(string[] args)
+        {
+            // Defining a new stack
+            Stack<int> stack = new Stack<int>();
+            int poppedValue;
+            // Can't pop from empty stack, so good Idea to check first!
+            if (stack.Count > 0)
+            {
+                poppedValue = stack.Pop();
+                Console.WriteLine($"Popped value: {poppedValue}");
+            }
+            else
+            {
+                Console.WriteLine("You can not pop from an empty stack!");
+            }
+
+            // add element to top of stack
+            stack.Push(5);
+            stack.Push(99);
+            stack.Push(500);
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+            // Look at the top element without removing it - Peek()
+            Console.WriteLine("Peek()");
+            stack.Push(1);
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+            stack.Push(8);
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+            stack.Push(-56);
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+            stack.Push(15015);
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+
+            // Remove last item - pop()
+            Console.WriteLine("\nPop()");
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+            poppedValue = stack.Pop();
+            Console.WriteLine($"Removed value: {poppedValue}");
+            Console.WriteLine($"Top value of the stack: {stack.Peek()}");
+
+            Stack<int> stackNumber = new Stack<int>();
+            stackNumber.Push(99);
+            stackNumber.Push(55);
+            stackNumber.Push(66);
+            stackNumber.Push(11);
+
+            
+
+            Console.WriteLine($"Initial count: {stackNumber.Count()}");
+            while (stackNumber.Count > 0)
+            {
+
+                Console.WriteLine($"Last number in stack: {stackNumber.Peek()}");
+                Console.WriteLine($"Number removed from the stack (LIFO): {stackNumber.Pop()}");
+                Console.WriteLine($"Initial count: {stackNumber.Count()}");
+            }
+
+
+            Console.WriteLine("#### Reverse order ####");
+            int[] numbers = new int[] { 8, 2, 3, 4, 5, 7, 8, 9, 2 };
+            // define a new stack to reverse order
+            Stack<int> myStack = new Stack<int>();
+
+            Console.WriteLine("The numbers in the array are: ");
+            //foreach loop
+            foreach (int num in numbers)
+            {
+                // print the num
+                Console.Write($"{num}, ");
+                // push it into myStack
+                myStack.Push(num);
+            }
+
+            Console.WriteLine("\nThe numbers in reverse: ");
+            while (myStack.Count>0)
+            {
+                // pop it and store it in a variable
+                int number = myStack.Pop();
+                // print the value we pop
+                Console.Write($"{number}, ");
+            }
+
+            Console.Read();
+        }
+
+## 106 Queues
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // define a queue
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+
+            // printing the element at the front of the queue, the first value will be shown (1)
+            queue.Enqueue(5);
+            queue.Enqueue(7);
+            queue.Enqueue(6);
+            queue.Enqueue(99);
+            Console.WriteLine($"The value at the front of the queue is: {queue.Peek()}");
+            queue.Enqueue(2);
+            Console.WriteLine($"First value in the queue is: {queue.Peek()}");
+            queue.Enqueue(3);
+            // removes number 1
+            int queueItem = queue.Dequeue();
+            Console.WriteLine($"New first item now: {queue.Peek()}");
+            Console.WriteLine($"\nFirst value in the queue is: {queue.Peek()}");
+
+            while (queue.Count > 0)
+            {
+                Console.WriteLine($"The front value {queue.Dequeue()} was remove from the queue.");
+                Console.WriteLine($"Current queue count is: {queue.Count}");
+            }
+
+            Console.WriteLine("\n#### EXAMPLE QUEUE ####");
+            Queue<Order> ordersQueue = new Queue<Order>();
+
+            foreach (Order order in RecieveOrdersFromBranch1())
+            {
+                ordersQueue.Enqueue(order);
+            }
+            foreach (Order order in RecieveOrdersFromBranch2())
+            {
+                ordersQueue.Enqueue(order);
+            }
+
+            // as long as the order at the front of the que is not empty
+            while (ordersQueue.Count>0)
+            {
+            // store it in a variable called currentOrder
+            Order currentOrder = ordersQueue.Dequeue();
+            //Processor the order
+            currentOrder.processOrder();
+            }
+
+            Console.Read();
+        }
+        static Order[] RecieveOrdersFromBranch1()
+        {
+            // creating new orders
+            Order[] orders = new Order[]
+            {
+                new Order(1,5),
+                new Order(2,4),
+                new Order(6,1)
+            };
+            return orders;
+        }
+        static Order[] RecieveOrdersFromBranch2()
+        {
+            // creating new orders
+            Order[] orders = new Order[]
+            {
+                new Order(3,5),
+                new Order(4,4),
+                new Order(5,10)
+            };
+            return orders;
+        }
+    }
+    class Order
+    {
+        public int ID { get; set; }
+        public int OrderQty { get; set; }
+        public Order(int id, int orderQty)
+        {
+            ID = id;
+            OrderQty = orderQty;
+        }
+        public void processOrder()
+        {
+            Console.WriteLine($"Order: {ID} processed!");
+        }
+    }
+
